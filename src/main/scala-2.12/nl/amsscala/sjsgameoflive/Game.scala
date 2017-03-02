@@ -19,10 +19,8 @@ protected trait Game {
     */
   protected def play(canvas: dom.html.Canvas, headless: Boolean) {
     // Keyboard events store
-    val (keysPressed, gameState) = (mutable.Set.empty[Int], GameState[SimpleCanvasGame.T](canvas))
 
     // Collect all Futures of onload events
-    val loaders = gameState.pageElements.map(pg => imageFuture(pg.src))
 
 
     //var prevGS = new GameState(canvas, gameState.pageElements.zip(load).map { case (el, img) => el.copy(img = img) })
@@ -54,15 +52,6 @@ protected trait Game {
           LivingWorld.add(Position(e.clientX.toInt, e.clientY.toInt), origin)
 
 
-      dom.window.addEventListener("keydown", (e: dom.KeyboardEvent) =>
-        e.keyCode match {
-          case Left | Right | Up | Down => keysPressed += e.keyCode
-          case _ =>
-        }, useCapture = false)
-
-      dom.window.addEventListener("keyup", (e: dom.KeyboardEvent) => {
-        keysPressed -= e.keyCode
-      }, useCapture = false)
     }
   }
 
