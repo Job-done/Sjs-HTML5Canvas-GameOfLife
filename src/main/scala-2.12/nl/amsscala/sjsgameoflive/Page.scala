@@ -35,7 +35,7 @@ trait Page {
     * @param gs Game state to make the graphics.
     * @return The same gs
     */
-  def render(gs: LivingWorld): LivingWorld = {
+  def render(gs: LivingWorld, generation: Long): LivingWorld = {
 
     def drawCells(cells: LivingWorld) = {
       ctx.fillStyle = "white"
@@ -57,7 +57,6 @@ trait Page {
       ctx.lineTo(x, ctx.canvas.height)
     }
 
-
     val cellInWondow = LivingWorld.containedInRect(gs, LivingWorld.convertPx2CellCoord(canvasDim(canvas), origin))
     drawCells(cellInWondow)
     ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -72,8 +71,9 @@ trait Page {
     val total = gs.size
     val visible = LivingWorld.containedInRect(gs, Position(52, 26)).size
     ctx.fillText(
-      f"""Population ${
-        total.asInstanceOf[js.Dynamic].toLocaleString("nl-NL", js.Dynamic.literal())
+      f"""Generation ${
+        generation.asInstanceOf[js.Dynamic].toLocaleString("nl-NL", js.Dynamic.literal())
+      }%10s. Population ${total.asInstanceOf[js.Dynamic].toLocaleString("nl-NL", js.Dynamic.literal())
       }%5s, visible: ${visible.asInstanceOf[js.Dynamic].toLocaleString("nl-NL", js.Dynamic.literal())}%5s"""
       , 32, 32)
 

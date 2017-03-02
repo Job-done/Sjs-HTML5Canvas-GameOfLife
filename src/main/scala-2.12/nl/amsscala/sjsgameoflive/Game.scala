@@ -34,13 +34,13 @@ protected trait Game {
       //val nowTimestamp = js.Date.now()
       // val actualGS = prevGS.keyEffect((nowTimestamp - prevTimestamp) / 1000, keysPressed)
 
-      render(LivingWorld.tick())
+      render(LivingWorld.tick(), LivingWorld.generation)
 
       // Render the <canvas> conditional only by movement of Hero, saves power
       // if (prevGS != actualGS) prevGS = render(actualGS)
     }
 
-    render(LivingWorld.randomize()) // First draw
+    render(LivingWorld.randomize(), 0) // First draw
 
     // Let's see how this game plays!
     if (!headless) {
