@@ -59,9 +59,16 @@ package object sjsgameoflive {
       * @param side side of both two squares
       * @return True if a intersection occurs
       */
-    def areTouching(posB: Position[P], side: P): Boolean = interSectsArea(this, this + side, posB, posB + side)
+    def hasOverlap(posB: Position[P], side: P): Boolean = interSectsArea(this, this + side, posB, posB + side)
 
-    def areTouching(posB: Position[P], side: Position[P]): Boolean = interSectsArea(this, this + side, posB, posB + side)
+    /**
+      * Checks if two squares intersects
+      *
+      * @param posB Position of the second square
+      * @param window dimensions of rectangular window
+      * @return True if a intersection occurs
+      */
+    def hasOverlap(posB: Position[P], window: Position[P]): Boolean = interSectsArea(this, this + window, posB, posB + window)
 
     /**
       * Return the Moore neighborhood with the domain range of r
