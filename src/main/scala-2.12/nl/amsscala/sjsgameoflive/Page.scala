@@ -6,6 +6,7 @@ import org.scalajs.dom.html.Canvas
 
 import scala.concurrent.{Future, Promise}
 import scala.scalajs.js
+import scala.scalajs.js.Dynamic
 import scalatags.JsDom.all._
 
 
@@ -15,11 +16,11 @@ trait Page {
     val org = center(canvas)
     Position(org.x - org.x % cellSize, org.y - org.y % cellSize)
   }
-  private lazy val postponed = // Create the HTML body element with content
+  private lazy val runOnce = // Create the HTML body element with content
     dom.document.body.appendChild(div(cls := "content", style := "text-align:center; background-color:#3F8630;",
       canvas,
-      a(href := "http://www.lostdecadegames.com/how-to-make-a-simple-html5-canvas-game/",
-        title := s"This object code is compiled with type parameter ${genericDetect(0D.asInstanceOf[SimpleCanvasGame.T])}.",
+      a(href := "#",
+        title := s"This object code is compiled with type parameter ${genericDetect(0D.asInstanceOf[HTML5CanvasGoL.T])}.",
         "HTML5 Canvas Game of Life"), " powered by ",
       a(href := "http://www.scala-js.org/", "Scala.js")).render)
   //Create canvas with a 2D processor
@@ -35,7 +36,7 @@ trait Page {
     * @param gs Game state to make the graphics.
     * @return The same gs
     */
-  def render(gs: LivingWorld, generation: Long): LivingWorld = {
+  def render(gs: LivingWorld, generation: Int): LivingWorld = {
 
     def drawCells(cells: LivingWorld) = {
       ctx.fillStyle = "white"
@@ -45,7 +46,9 @@ trait Page {
       })
     }
 
-    postponed
+    def thousandSeparator(n: Int): Dynamic = n.asInstanceOf[js.Dynamic].toLocaleString("nl-NL", js.Dynamic.literal())
+
+    runOnce
 
     ctx.beginPath()
     ctx.strokeStyle = "black"
@@ -71,23 +74,9 @@ trait Page {
     val total = gs.size
     val visible = LivingWorld.containedInRect(gs, Position(52, 26)).size
     ctx.fillText(
-      f"""Generation ${
-        generation.asInstanceOf[js.Dynamic].toLocaleString("nl-NL", js.Dynamic.literal())
-      }%10s. Population ${total.asInstanceOf[js.Dynamic].toLocaleString("nl-NL", js.Dynamic.literal())
-      }%5s, visible: ${visible.asInstanceOf[js.Dynamic].toLocaleString("nl-NL", js.Dynamic.literal())}%5s"""
-      , 32, 32)
-
-
-    // Draw each page element in the specific list order
-    /*gs.pageElements.foreach(pe => {
-      def drawImage(resize: Position[Int]) =
-        ctx.drawImage(pe.img, pe.pos.x.asInstanceOf[Int], pe.pos.y.asInstanceOf[Int], resize.x, resize.y)
-
-      drawImage(pe match {
-        case _: Playground[_] => canvasDim[Int](canvas)
-        case pm: CanvasComponent[_] => dimension(pm.img) // The otherwise or default clause
-      })
-    })*/
+      f"""Generation ${thousandSeparator(generation)}%8s. Population ${
+        thousandSeparator(total)
+      }%6s, visible: ${thousandSeparator(visible)}%5s""", 32, 32)
 
     gs
   }

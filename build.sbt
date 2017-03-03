@@ -1,7 +1,7 @@
 lazy val commonSettings = Seq(
                 name := "HTML5 canvas Game of Live",
              version := "0.0",
-         description := "Simple HTML5 Canvas game ported to Scala.js.",
+         description := "HTML5 Canvas Game of Life.",
         organization := "nl.amsscala",
     organizationName := "Amsterdam.scala Meetup Group",
 organizationHomepage := Some(url("http://www.meetup.com/amsterdam-scala/")),

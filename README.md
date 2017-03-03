@@ -2,6 +2,8 @@ GameOfLifeFP
 ============
 [Installation instructions here](#installation-instructions)
 
+[A live demo here](https://job-done.github.io/Sjs-HTML5Canvas-GameOfLive/public/views/index.html)
+
 Conway's Game of Life - Functional Programmed in Scala
 
 A scala implementation of Conway's Game of Life, a cellular automaton devised in 1970 by the British mathematician John Horton Conway. It is considered a zero-player or solitaire game because its evolution is determined by its initial state, requiring no further input from humans.
