@@ -2,10 +2,6 @@ package nl.amsscala
 package sjsgameoflive
 
 import org.scalajs.dom
-import org.scalajs.dom.ext.KeyCode.{Down, Left, Right, Up}
-
-import scala.collection.mutable
-import scala.scalajs.js
 
 /** This game with its comprehensible rules. */
 protected trait Game {

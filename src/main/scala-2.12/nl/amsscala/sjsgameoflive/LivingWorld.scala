@@ -10,7 +10,9 @@ object LivingWorld {
     livingWorld += convertPx2CellCoord(clickPos, origin)
   }
 
-  def apply(pos : (Int,Int)*): LivingWorld = pos.map{case (x,y)=> Position(x,y)}.toSet
+  def apply(offset: Position[Int], pos: (Int, Int)*): LivingWorld = pos.map { case (x, y) => Position(x, y) + offset }.toSet
+
+  def apply(pos: (Int, Int)*): LivingWorld = pos.map { case (x, y) => Position(x, y) }.toSet
 
   def convertPx2CellCoord(clickPos: Position[Int], origin: Position[Int]): Position[Int] = {
     val centered = clickPos - (origin + 5)
@@ -59,8 +61,8 @@ object LivingWorld {
     val surviveNumbers = rulestringS -- rulestringB
 
     /**
-      * Second, this function gives all survivors.
-      * @return
+      * Secondly, this function gives you all survivors.
+      * @return all survivors
       */
     @inline
     def survivors(): Set[Position[Int]] = {
