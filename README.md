@@ -29,7 +29,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.102-b14, mixed mode)
     1. [Installing sbt on Mac](http://www.scala-sbt.org/release/docs/Installing-sbt-on-Mac.html) or
     1. [Installing sbt on Windows](http://www.scala-sbt.org/release/docs/Installing-sbt-on-Windows.html) or
     1. [Installing sbt on Linux](http://www.scala-sbt.org/release/docs/Installing-sbt-on-Linux.html) or
-    1. [Manual installation](http://www.scala-sbt.org/release/docs/Manual-Installation.html) (not recommended)
+    1. `[Manual installation](http://www.scala-sbt.org/release/docs/Manual-Installation.html)` (not recommended)
 1. (Optional ) To test if sbt is effective submit the `sbt sbtVersion` command. The response could look like as this:
 ```
 [info] Set current project to fransdev (in build file:/C:/Users/FransDev/)
